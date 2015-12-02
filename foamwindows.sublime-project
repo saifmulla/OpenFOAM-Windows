@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"path": "libraries"
+		},
+		{
+			"path": "src"
+		},
+		{
+			"path": "applications"
+		}
+	],
+	"settings":
+	{
+		"tab_size": 4,
+	},
+	"build_systems":
+	[
+		{
+			"cmd":["make"]
+		}
+	]
+}
