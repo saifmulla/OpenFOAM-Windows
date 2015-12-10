@@ -6,10 +6,15 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		C28727DE1C130F5200D23056 /* Foam-Windows */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Foam-Windows"; path = ..; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		C28727D31C130F2600D23056 = {
 			isa = PBXGroup;
 			children = (
+				C28727DE1C130F5200D23056 /* Foam-Windows */,
 			);
 			sourceTree = "<group>";
 		};
