@@ -1,7 +1,7 @@
 //TestWindowsExport.cpp
 #include <iostream>
-// #include "gtest/gtest.h"
-#include "gmock/gmock.h"
+#include "gtest/gtest.h"
+//#include "gmock/gmock.h"
 #include "windowsExport.H"
 
  TEST(TestWindowsExport,checkValues){

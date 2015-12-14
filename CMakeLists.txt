@@ -17,6 +17,10 @@ ENDIF( APPLE )
 PROJECT(openfoam-windows CXX) #project name
 
 # ###############################################
+# yes we are building shared libraries
+ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
+
+# ###############################################
 # Allow unit tests to be disabled via command
 # line or the CMake GUI.
 OPTION( BUILD_UNIT_TESTS "Build unit tests." ON )
@@ -33,10 +37,10 @@ OPTION( BUILD_UNIT_TESTS "Build unit tests." ON )
 # also make sure GMock headers will compile in
 # all targets.
 IF( MSVC )
-	SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-	SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-	SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-	ADD_DEFINITIONS( -D_VARIADIC_MAX=10 )
+	SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
+	SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
+	SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
+	ADD_DEFINITIONS( -D_VARIADIC_MAX=10)
 ENDIF( MSVC )
 
 # ###############################################
