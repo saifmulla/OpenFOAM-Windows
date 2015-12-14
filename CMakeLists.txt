@@ -24,9 +24,9 @@ OPTION( BUILD_UNIT_TESTS "Build unit tests." ON )
 # ###############################################
 # Enable the CMake built in CTest system if unit
 # tests are enabled.
-IF( BUILD_UNIT_TESTS )
+#IF( BUILD_UNIT_TESTS )
 	ENABLE_TESTING()
-ENDIF( BUILD_UNIT_TESTS )
+#ENDIF( BUILD_UNIT_TESTS )
 
 # ###############################################
 # Make VC happy and group all the binary outputs,
@@ -55,3 +55,5 @@ ENDIF( APPLE )
 
 ########## include directories ###############
 INCLUDE(libraries/CMakeLists.txt)
+ADD_SUBDIRECTORY(applications)
+
