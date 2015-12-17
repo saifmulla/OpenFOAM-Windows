@@ -14,23 +14,21 @@ ENDIF( APPLE )
 
 # ###############################################
 # Start the project.
-PROJECT(openfoam-windows CXX) #project name
+PROJECT(openfoam-windows C CXX) #project name
 
 # ###############################################
 # yes we are building shared libraries
 ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
 
 # ###############################################
-# Allow unit tests to be disabled via command
-# line or the CMake GUI.
+# by default unit tests are disabled
+# however to enable them simply supply variable
+# BUILD_UNIT_TESTS = ON
 OPTION( BUILD_UNIT_TESTS "Build unit tests." ON )
 
-# ###############################################
-# Enable the CMake built in CTest system if unit
-# tests are enabled.
-#IF( BUILD_UNIT_TESTS )
-	ENABLE_TESTING()
-#ENDIF( BUILD_UNIT_TESTS )
+IF (BUILD_UNIT_TESTS)
+	SET(BUILD_UNIT_TESTS ${BUILD_UNIT_TESTS})
+ENDIF (BUILD_UNIT_TESTS)
 
 # ###############################################
 # Make VC happy and group all the binary outputs,
@@ -44,10 +42,6 @@ IF( MSVC )
 ENDIF( MSVC )
 
 # ###############################################
-# Find the threading package for this machine.
-# FIND_PACKAGE( Threads )
-
-# ###############################################
 # Fix Google Mock to work with Clang on OsX.
 # This is a big, yet safe, cheat.
 IF( APPLE )
@@ -56,8 +50,19 @@ ENDIF( APPLE )
 
 
 #compile gtest framework for unit testing
+# ###############################################
+# Enable the CMake built in CTest system if unit
+# tests are enabled.
+IF( BUILD_UNIT_TESTS)
+	ENABLE_TESTING()
+	# ###############################################
+	# find package pthreads this is required when 
+	# unit testing with gtest 
+	FIND_PACKAGE(Threads)
+	INCLUDE(libraries/CMakeLists.txt)
+	ADD_SUBDIRECTORY(applications/test/unittests)
+	# ADD_SUBDIRECTORY(libraries)
+ENDIF( BUILD_UNIT_TESTS)
 
 ########## include directories ###############
-INCLUDE(libraries/CMakeLists.txt)
-ADD_SUBDIRECTORY(applications)
 
