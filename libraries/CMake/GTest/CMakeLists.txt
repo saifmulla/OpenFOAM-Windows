@@ -19,7 +19,7 @@ SET( SOURCE_FILES
 )
 
 # Add as a static library target.
-ADD_LIBRARY( GMock
+ADD_LIBRARY( GTest
 	STATIC
 	${INCLUDE_FILES}
 	${SOURCE_FILES}
