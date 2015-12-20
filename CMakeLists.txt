@@ -23,8 +23,6 @@ IF( APPLE )
 	    UNSET(XCRUN_OSX_SYSROOT_STATUS)
     ENDIF(NOT CMAKE_OSX_SYSROOT)
 
-    #SET(CMAKE_OSX_SYSROOT "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
-
     # set macOs architecture to x86
 	SET( CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11" )
 	SET( CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++" )
