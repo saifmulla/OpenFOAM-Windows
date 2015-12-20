@@ -2,12 +2,12 @@
 #PROJECT(OpenFOAM-Windows-UnitTests CXX) #project name
 #include list of directories here
 
-INCLUDE_DIRECTORIES(${GMOCK_INCLUDE_DIRS}
+INCLUDE_DIRECTORIES(${GTEST_INCLUDE_DIRS}
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/include/
 )
 
 ADD_EXECUTABLE(TestWindowsExport TestWindowsExport.cpp)
-TARGET_LINK_LIBRARIES(TestWindowsExport GTest ${CMAKE_THREAD_LIBS_INIT})
+TARGET_LINK_LIBRARIES(TestWindowsExport gtest ${CMAKE_THREAD_LIBS_INIT})
 ADD_TEST(TestWindowsExport ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}TestWindowsExport)
 #loop over all the cpp files prefixed with Test
 #FILE(GLOB TEST_PROGS "Test*.cpp")
