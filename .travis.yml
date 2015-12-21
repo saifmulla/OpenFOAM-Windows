@@ -9,6 +9,7 @@ branches:
     only:
         - master
         - devel
+        - ubuntu-fix
 script:
     - mkdir _build && cd _build
     - cmake ../
