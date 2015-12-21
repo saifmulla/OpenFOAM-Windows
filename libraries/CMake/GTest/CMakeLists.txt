@@ -1,11 +1,10 @@
 ##################################
 #set GTEST_ROOT variable to call googletest folder in previous 
 # directory
-SET(GTEST_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../../Gtest")
+SET(GTEST_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../../GTest")
 # Use a variable to point to the root of googlemock within
 # the External directory.  This makes it easier to update
 # to new releases as desired.
-
 INCLUDE_DIRECTORIES( ${GTEST_ROOT}/fused-src )
 
 # Make the file lists.
