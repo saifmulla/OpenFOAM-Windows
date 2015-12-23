@@ -37,9 +37,7 @@ License
 using namespace Foam;
 
 TEST(TestContiguous, checkint){
-    int a = 1;
-	bool check = contiguous<int>();
-    ASSERT_TRUE(check);
+    ASSERT_TRUE(contiguous<int>());
 }
 
 TEST(TestContiguous, checkbool){
