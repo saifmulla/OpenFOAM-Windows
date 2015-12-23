@@ -6,6 +6,9 @@ INCLUDE_DIRECTORIES(${GTEST_INCLUDE_DIRS}
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/include/
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/Swap
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/zero
+${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/pTraits
+${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/chars
+${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/one
 )
 
 #loop over all the cpp files prefixed with Test
