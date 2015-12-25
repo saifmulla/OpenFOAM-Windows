@@ -10,6 +10,7 @@ ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/contiguous
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/pTraits
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/chars
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/one
+${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/bool
 )
 
 #loop over all the cpp files prefixed with Test

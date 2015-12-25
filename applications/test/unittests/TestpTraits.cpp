@@ -33,12 +33,13 @@ License
 #include "gtest/gtest.h"
 #include "windowsExport.H"
 #include "pTraits.H"
-#include "zero.H"
+#include "bool.H"
+
 using namespace Foam;
 
-TEST(TestpTraits, constructor){
-//    zero z;
-//    pTraits<zero> p(z);
+TEST(TestpTraits, checkBool){
+    Foam::pTraits<bool> p(true);
+    EXPECT_TRUE(p);
 }
 
 

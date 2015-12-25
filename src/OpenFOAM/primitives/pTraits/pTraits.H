@@ -56,9 +56,8 @@ public:
     // Constructors
 
     //- Construct from primitive
-    pTraits(const PrimitiveType& p)
-    : PrimitiveType(p)
-    {}
+    pTraits(const PrimitiveType& p) : PrimitiveType(p){
+    }
 
     // Construct from Istream
     pTraits(Istream& is)
