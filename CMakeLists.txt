@@ -32,8 +32,38 @@ IF( APPLE )
 ENDIF( APPLE )
 
 # ###############################################
+# global variables for some messages to be displayed
+SET(MPI_MESSAGE 
+	"It appears MPI compiler is not present or path is not supplied."
+	"Despite compilation will continue but the code cannot be run in parallel."
+	"if you intent to use parallel processing then reconfigure again by supplying "
+	"value to -DMPI_CXX_COMPILER."
+	)
+
+# ###############################################
 # Start the project.
 PROJECT(openfoam-windows C CXX) #project name
+
+# ###############################################
+# start finding required packages such as MPI, Flex, bison etc
+# ###########
+# find MPI
+FIND_PACKAGE(MPI)
+IF(NOT MPI_CXX_FOUND)
+    MESSAGE(WARNING ${MPI_MESSAGE})
+ELSE(MPI_CXX_FOUND)
+	MESSAGE("MPI EXEC ${MPIEXEC}")
+	EXECUTE_PROCESS(COMMAND mpirun --version RESULT_VARIABLE VERSION_RESULT 
+		OUTPUT_VARIABLE VERSION_OUTPUT OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_VARIABLE VERSION_ERROR)
+	MESSAGE("${VERSION_OUTPUT}")
+	MESSAGE("${VERSION_ERROR}")
+	# STRING(REPLACE " " ";" OP_LIST ${VERSION_OUTPUT})
+	# STRING(REPLACE "/" ";" EXEC_LIST ${MPIEXEC})
+	# LIST(GET OP_LIST 2 IDX2)
+	# LIST(GET EXEC_LIST 4 MPIEXEC_COMMAND)
+	# MESSAGE(STATUS "Using ${MPIEXEC} Version ${IDX2}")
+ENDIF(NOT MPI_CXX_FOUND)
+
 
 # ###############################################
 # yes we are building shared libraries
