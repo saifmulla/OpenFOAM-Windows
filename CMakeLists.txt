@@ -90,18 +90,21 @@ IF( MSVC )
 ENDIF( MSVC )
 
 # ###############################################
-# Fix Google Mock to work with Clang on OsX.
-# This is a big, yet safe, cheat.
-IF( APPLE )
-	INCLUDE_DIRECTORIES(libraries/CMake/GTest)
-ENDIF( APPLE )
-
+# include subdirectories to be added for compilations
+INCLUDE(src/CMakeLists.txt)
 
 #compile gtest framework for unit testing
 # ###############################################
 # Enable the CMake built in CTest system if unit
 # tests are enabled.
 IF( BUILD_UNIT_TESTS)
+	# ###############################################
+	# Fix Google Mock to work with Clang on OsX.
+	# This is a big, yet safe, cheat.
+	IF( APPLE )
+		INCLUDE_DIRECTORIES(libraries/CMake/GTest)
+	ENDIF( APPLE )
+
 	ENABLE_TESTING()
 	# ###############################################
 	# find package pthreads this is required when 
@@ -113,4 +116,5 @@ IF( BUILD_UNIT_TESTS)
 ENDIF( BUILD_UNIT_TESTS)
 
 ########## include directories ###############
+
 
