@@ -21,60 +21,27 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Class
-    Foam::pTraits
-
-Description
-    Traits class for primitives.
-
-    All primitives need a specialised version of this class. The
-    specialised version will normally also require a conversion
-    method.
-
 \*---------------------------------------------------------------------------*/
 
-#ifndef pTraits_H
-#define pTraits_H
+#include "bool.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-#include "windowsExport.H"
+const char* const Foam::pTraits<bool>::typeName = "bool";
+const bool Foam::pTraits<bool>::zero = false;
+const bool Foam::pTraits<bool>::one = true;
 
-namespace Foam
-{
+const char* Foam::pTraits<bool>::componentNames[] = { "x" };
 
-class Istream;
-
-/*---------------------------------------------------------------------------*\
-                           Class pTraits Declaration
-\*---------------------------------------------------------------------------*/
-
-template<class PrimitiveType>
-class FOAMEXPORT pTraits
-{
-
-public:
-
-    // Constructors
-
-    //- Construct from primitive
-    pTraits(const PrimitiveType& p) : PrimitiveType(p){
-    }
-
-    // Construct from Istream
-    pTraits(Istream& is)
-    :
-    PrimitiveType(is)
-    {}
-};
+Foam::pTraits<bool>::pTraits(const bool& p)
+:
+    p_(p)
+{}
 
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
-} // End namespace Foam
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
-#endif
+//Foam::pTraits<bool>::pTraits(Istream& is)
+//{
+//    is >> p_;
+//}
 
 // ************************************************************************* //

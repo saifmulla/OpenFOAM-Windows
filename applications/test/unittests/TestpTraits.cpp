@@ -31,7 +31,6 @@ License
 \*---------------------------------------------------------------------------*/
 #include <iostream>
 #include "gtest/gtest.h"
-#include "windowsExport.H"
 #include "pTraits.H"
 #include "bool.H"
 

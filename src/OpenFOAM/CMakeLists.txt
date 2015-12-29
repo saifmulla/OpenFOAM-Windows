@@ -43,15 +43,47 @@ FILE(GLOB_RECURSE LIST_DIR_H . EXCLUDE lnInclude "*.H")
 #loop over all the header files generated in list
 FOREACH(LIST_DIR_H ${LIST_DIR_H})
     GET_FILENAME_COMPONENT(FILE_NAME ${LIST_DIR_H} NAME)#generate the real file name
-    #execute command to create symbolic links
-    EXECUTE_PROCESS(COMMAND ln -s ${LIST_DIR_H} src/OpenFOAM/lnInclude/${FILE_NAME}
-        RESULT_VARIABLE result
-        OUTPUT_VARIABLE output
-        ERROR_VARIABLE error
+    # check if file already exists, if yes then retain it
+    IF(NOT EXISTS src/OpenFOAM/lnInclude/${FILE_NAME})
+        #execute command to create symbolic links
+        EXECUTE_PROCESS(COMMAND ln -s ${LIST_DIR_H} src/OpenFOAM/lnInclude/${FILE_NAME}
+            RESULT_VARIABLE result
+            OUTPUT_VARIABLE output
+            ERROR_VARIABLE error
+        )
+        # check if ${error} variable is empty otherwise generate fatal error and abort build
+        IF(NOT result EQUAL "0")
+            MESSAGE(FATAL_ERROR "failed to create symbolic link on ${FILE_NAME}
+            error => ${error}")
+        ENDIF(NOT result EQUAL "0")
+        # unset all variables
+        UNSET(result)
+        UNSET(output)
+        UNSET(error)
+    ENDIF(NOT EXISTS src/OpenFOAM/lnInclude/${FILE_NAME})# endif file exists
+ENDFOREACH(LIST_DIR_H ${LIST_DIR_H}) #end foreach list dir
+
+# ###############################################
+# now point to lnInclude directory for source compilations
+INCLUDE_DIRECTORIES(
+    ${CMAKE_CURRENT_BINARY_DIR}/lnInclude
     )
-    # check if ${error} variable is empty otherwise generate fatal error and abort build
-    IF(NOT result EQUAL "0")
-        MESSAGE(FATAL_ERROR "failed to create symbolic link on ${FILE_NAME}
-        error => ${error}")
-    ENDIF(NOT result EQUAL "0")
-ENDFOREACH(LIST_DIR_H ${LIST_DIR_H})
+
+# ###############################################
+# add source files to the list to be compiled into shared lib
+# this list is intentionally kept manual to avoid cmake 
+# file(GLOB_RECURSE) problems also to keep it efficient
+# for every file to be compilied must be appended manually
+# to SOURCE_FILES variable
+SET(SOURCE_FILES 
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bool/bool.C
+    )
+
+# ###############################################
+# add target to create shared library
+ADD_LIBRARY(${SHARED_LIB_NAME} SHARED ${SOURCE_FILES})
+
+
+
+
+

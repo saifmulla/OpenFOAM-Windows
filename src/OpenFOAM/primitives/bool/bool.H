@@ -92,8 +92,7 @@ public:
     
     //- Construct from primitive
     // TODO: change this later to 
-    explicit pTraits(const bool& p):p_(p){
-    }
+    explicit pTraits(const bool& p);
     
     
     //- Construct from Istream
