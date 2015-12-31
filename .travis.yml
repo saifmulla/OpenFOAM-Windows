@@ -9,6 +9,8 @@ branches:
     only:
         - master
         - devel
+        - move-tests
+	- openfoam-shared-lib
 script:
     - mkdir _build && cd _build
     - cmake ../
