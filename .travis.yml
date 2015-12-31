@@ -10,7 +10,7 @@ branches:
         - master
         - devel
         - move-tests
-	- openfoam-shared-lib
+        - openfoam-shared-lib
 script:
     - mkdir _build && cd _build
     - cmake ../
