@@ -11,7 +11,9 @@ ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/pTraits
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/chars
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/one
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/bool
+${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/Scalar
 )
+
 
 #loop over all the cpp files prefixed with Test
 FILE(GLOB TEST_PROGS "Test*.cpp")

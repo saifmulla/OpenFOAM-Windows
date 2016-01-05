@@ -45,6 +45,31 @@ SET(MPI_MESSAGE
 PROJECT(openfoam-windows C CXX) #project name
 
 # ###############################################
+# yes we are building shared libraries
+ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
+
+# ###############################################
+# Make VC happy and group all the binary outputs,
+# also make sure GMock headers will compile in
+# all targets.
+IF( MSVC )
+	SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
+	SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
+	SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
+	ADD_DEFINITIONS( -D_VARIADIC_MAX=10)
+ENDIF( MSVC )
+
+# ###############################################
+# by default unit tests are disabled
+# however to enable them simply supply variable
+# BUILD_UNIT_TESTS = ON
+OPTION( BUILD_UNIT_TESTS "Build unit tests." ON )
+
+IF (BUILD_UNIT_TESTS)
+	SET(BUILD_UNIT_TESTS ${BUILD_UNIT_TESTS})
+ENDIF (BUILD_UNIT_TESTS)
+
+# ###############################################
 # start finding required packages such as MPI, Flex, bison etc
 # ###########
 # find MPI
@@ -62,32 +87,6 @@ ELSE(MPI_CXX_FOUND)
 	# LIST(GET EXEC_LIST 4 MPIEXEC_COMMAND)
 	# MESSAGE(STATUS "Using ${MPIEXEC} Version ${IDX2}")
 ENDIF(NOT MPI_CXX_FOUND)
-
-
-# ###############################################
-# yes we are building shared libraries
-ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
-
-# ###############################################
-# by default unit tests are disabled
-# however to enable them simply supply variable
-# BUILD_UNIT_TESTS = ON
-OPTION( BUILD_UNIT_TESTS "Build unit tests." ON )
-
-IF (BUILD_UNIT_TESTS)
-	SET(BUILD_UNIT_TESTS ${BUILD_UNIT_TESTS})
-ENDIF (BUILD_UNIT_TESTS)
-
-# ###############################################
-# Make VC happy and group all the binary outputs,
-# also make sure GMock headers will compile in
-# all targets.
-IF( MSVC )
-	SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
-	SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
-	SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
-	ADD_DEFINITIONS( -D_VARIADIC_MAX=10)
-ENDIF( MSVC )
 
 # ###############################################
 # include subdirectories to be added for compilations

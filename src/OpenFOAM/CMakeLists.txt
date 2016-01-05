@@ -90,6 +90,9 @@ INCLUDE_DIRECTORIES(
 # to SOURCE_FILES variable
 SET(SOURCE_FILES 
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bool/bool.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/doubleScalar/doubleScalar.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/floatScalar/floatScalar.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/scalar/scalar.C
     )
 
 # ###############################################
