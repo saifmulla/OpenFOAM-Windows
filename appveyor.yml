@@ -18,5 +18,5 @@ build:
 build_script:
   - md build
   - cd build
-  - cmake ../../ 
+  - cmake .. 
   - cmake --build . --target ALL_BUILD
