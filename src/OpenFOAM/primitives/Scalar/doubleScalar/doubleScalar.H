@@ -35,9 +35,10 @@ SourceFiles
 #ifndef doubleScalar_H
 #define doubleScalar_H
 
+#include "windowsExport.H"
 #include "doubleFloat.H"
 #include "direction.H"
-#include "word.H"
+// #include "word.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

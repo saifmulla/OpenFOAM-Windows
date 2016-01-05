@@ -30,9 +30,6 @@ Date
      23/12/2015
  \*---------------------------------------------------------------------------*/
 
-#include <iostream>
-#include "gtest/gtest.h"
-#include "windowsExport.H"
 #include "one.H"
 
 //using namespace Foam;
@@ -41,10 +38,6 @@ TEST(TestOne, construct){
     Foam::one _one;
 }
 
-int main(int argc, char *argv[]){
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
 
 
 

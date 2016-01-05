@@ -21,33 +21,37 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
  file
-     Testzero.cpp
+     TestSwap.cpp
  Description
-     This file is a test file for validating zero class
+     This file is a test file for validating Swap function
  Creator
      Saif Mulla
  Date
      21/12/2015
 \*---------------------------------------------------------------------------*/
-
-#include <iostream>
-#include "gtest/gtest.h"
-#include "windowsExport.H"
-#include "zero.H"
+     
+#include "Swap.H"
 using namespace Foam;
 
-TEST(TestZero, checkZero){
-	zero z;
+TEST(TestSwap, checkSwap){
+	int a = 10;
+	int b = 20;
+    Swap(a,b);
     SUCCEED();
 }
 
-TEST(TestZero, divide){
-    zero z;
-    z/0;
-    SUCCEED();
+TEST(TestSwap, checkInt){
+	int a = 10;
+	int b = 20;
+	Swap(a,b);
+	ASSERT_EQ(a,20);
+	ASSERT_EQ(b,10);
 }
 
-int main(int argc, char *argv[]){
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(TestSwap, checkFloat){
+	float a = 0.10;
+	float b = 0.010;
+	Swap<float>(a,b);
+	EXPECT_FLOAT_EQ(a,0.010);
+	EXPECT_FLOAT_EQ(b,0.10);
 }

@@ -21,47 +21,33 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
  file
-     TestSwap.cpp
+     TestChar.cpp
  Description
-     This file is a test file for validating Swap function
+     This file is a test file for validating class char
  Creator
      Saif Mulla
  Date
-     21/12/2015
+     23/12/2015
 \*---------------------------------------------------------------------------*/
 
-#include <iostream>
-#include "gtest/gtest.h"
-#include "windowsExport.H"
-#include "Swap.H"
+#include "char/char.H"
 using namespace Foam;
 
-TEST(TestSwap, checkSwap){
-	int a = 10;
-	int b = 20;
-    Swap(a,b);
-    SUCCEED();
+TEST(TestChar, checkIsspace){
+    ASSERT_TRUE(isspace(' '));
 }
 
-TEST(TestSwap, checkInt){
-	int a = 10;
-	int b = 20;
-	Swap(a,b);
-	ASSERT_EQ(a,20);
-	ASSERT_EQ(b,10);
+TEST(TestChar, checkIsspacenewline){
+    ASSERT_TRUE(isspace('\n'));
 }
 
-TEST(TestSwap, checkFloat){
-	float a = 0.10;
-	float b = 0.010;
-	Swap<float>(a,b);
-	EXPECT_FLOAT_EQ(a,0.010);
-	EXPECT_FLOAT_EQ(b,0.10);
+TEST(TestChar, checkIsspaceslash){
+    ASSERT_TRUE(isspace('\r'));
+}
+
+TEST(TestChar, checkIsspacetab){
+    ASSERT_TRUE(isspace('\t'));
 }
 
 
-int main(int argc, char *argv[]){
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
 

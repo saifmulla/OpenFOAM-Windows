@@ -30,7 +30,7 @@ License
 // #include "products.H"
 // class label;
 // class products;
-
+#include "windowsExport.H"
 #include <cmath>
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

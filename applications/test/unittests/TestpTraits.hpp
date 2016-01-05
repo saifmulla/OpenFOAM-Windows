@@ -1,9 +1,9 @@
 /*---------------------------------------------------------------------------*\
-    =========                 |
-    \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-     \\    /   O peration     |
-      \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
-       \\/     M anipulation  |
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
+     \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
@@ -20,26 +20,22 @@ License
 
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
-file
-    TestScalar.cpp
-Description
-    This file is a test file for validating Swap function
-Creator
-    Saif Mulla
-Date
-    25/12/2015
+ file
+     TestSwap.cpp
+ Description
+     This file is a test file for validating Swap function
+ Creator
+     Saif Mulla
+ Date
+     22/12/2015
 \*---------------------------------------------------------------------------*/
-// #include <iostream>
-#include "gtest/gtest.h"
-// #include "Scalar.H"
 
-TEST(TestScalar, construct){
-   // Foam::pTraits<bool> p(true);
-   // EXPECT_TRUE(p);
-}
+#include "pTraits.H"
+#include "bool.H"
 
+using namespace Foam;
 
-int main(int argc, char *argv[]){
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(TestpTraits, checkBool){
+    Foam::pTraits<bool> p(true);
+    EXPECT_TRUE(p);
 }

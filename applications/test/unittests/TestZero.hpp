@@ -21,42 +21,25 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
  file
-     TestChar.cpp
+     Testzero.cpp
  Description
-     This file is a test file for validating class char
+     This file is a test file for validating zero class
  Creator
      Saif Mulla
  Date
-     23/12/2015
+     21/12/2015
 \*---------------------------------------------------------------------------*/
 
-#include <iostream>
-#include "gtest/gtest.h"
-#include "windowsExport.H"
-#include "char/char.H"
+#include "zero.H"
 using namespace Foam;
 
-TEST(TestChar, checkIsspace){
-    ASSERT_TRUE(isspace(' '));
+TEST(TestZero, checkZero){
+	zero z;
+    SUCCEED();
 }
 
-TEST(TestChar, checkIsspacenewline){
-    ASSERT_TRUE(isspace('\n'));
+TEST(TestZero, divide){
+    zero z;
+    z/0;
+    SUCCEED();
 }
-
-TEST(TestChar, checkIsspaceslash){
-    ASSERT_TRUE(isspace('\r'));
-}
-
-TEST(TestChar, checkIsspacetab){
-    ASSERT_TRUE(isspace('\t'));
-}
-
-
-int main(int argc, char *argv[]){
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
-
-
-
