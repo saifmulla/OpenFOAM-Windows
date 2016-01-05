@@ -20,3 +20,4 @@ build_script:
   - cd build
   - cmake .. 
   - cmake --build . --target ALL_BUILD
+  - ctest
