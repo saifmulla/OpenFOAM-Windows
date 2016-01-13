@@ -43,3 +43,7 @@ SET(SOURCE_FILES
 # ###############################################
 # add target to create shared library
 ADD_LIBRARY(${SHARED_LIB_NAME} SHARED ${SOURCE_FILES})
+
+IF( BUILD_UNIT_TESTS )
+    ADD_SUBDIRECTORY(unittests)
+ENDIF( BUILD_UNIT_TESTS )

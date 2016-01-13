@@ -93,9 +93,6 @@ ELSE(MPI_CXX_FOUND)
 	# MESSAGE(STATUS "Using ${MPIEXEC} Version ${IDX2}")
 ENDIF(NOT MPI_CXX_FOUND)
 
-# ###############################################
-# include subdirectories to be added for compilations
-INCLUDE(src/CMakeLists.txt)
 
 #compile gtest framework for unit testing
 # ###############################################
@@ -115,10 +112,13 @@ IF( BUILD_UNIT_TESTS)
 	# unit testing with gtest 
 	FIND_PACKAGE(Threads)
 	INCLUDE(libraries/CMakeLists.txt)
-	ADD_SUBDIRECTORY(applications/test/unittests)
+	# ADD_SUBDIRECTORY(applications/test/unittests)
 	# ADD_SUBDIRECTORY(libraries)
 ENDIF( BUILD_UNIT_TESTS)
 
 ########## include directories ###############
+# ###############################################
+# include subdirectories to be added for compilations
+INCLUDE(src/CMakeLists.txt)
 
 
