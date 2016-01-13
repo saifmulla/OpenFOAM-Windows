@@ -1,13 +1,9 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # Enable C++11 on Apple machines.
 IF( APPLE )
-	# SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++" )
-	# SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++" )
-	# SET( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libc++" )
-	# SET( CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -stdlib=libc++" )
-    # set mac os default deployment minimum to 10.7
+	 # set mac os default deployment minimum to 10.7
     IF(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
-        SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.7")
+        SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.8")
     ENDIF(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # this code only builds for mac os 64 bit arch
     SET(CMAKE_OSX_ARCHITECURES "x86_64")
@@ -40,13 +36,17 @@ SET(MPI_MESSAGE
 	"value to -DMPI_CXX_COMPILER."
 	)
 
-# ###############################################
+# ###############################################SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++" )
+	# SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++" )
+	# SET( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libc++" )
 # Start the project.
 PROJECT(openfoam-windows C CXX) #project name
 
-# ###############################################
-# yes we are building shared libraries
-ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
+IF(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+	SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++" )
+	SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -std=c++11 -stdlib=libc++ -lc++ -Wl" )
+	SET( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libc++ -dynamiclib -flat_namespace" )
+ENDIF(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 
 # ###############################################
 # Make VC happy and group all the binary outputs,
@@ -58,6 +58,11 @@ IF( MSVC )
 	SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
 	ADD_DEFINITIONS( -D_VARIADIC_MAX=10)
 ENDIF( MSVC )
+
+# ###############################################
+# yes we are building shared libraries
+ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
+
 
 # ###############################################
 # by default unit tests are disabled

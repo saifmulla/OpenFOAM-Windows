@@ -39,6 +39,7 @@ SourceFiles
 #include "doubleFloat.H"
 #include "direction.H"
 // #include "word.H"
+#include <cstdlib>
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -63,7 +64,7 @@ static const doubleScalar doubleScalarROOTVSMALL = 1.0e-150;
 inline FOAMEXPORT bool readScalar(const char* buf, doubleScalar& s)
 {
     char* endPtr;
-    s = strtod(buf, &endPtr);
+    s = std::strtod(buf, &endPtr);
 
     return (*endPtr == '\0');
 }

@@ -10,3 +10,4 @@
 #include "TestpTraits.hpp"
 #include "TestScalar.hpp"
 #include "TestZero.hpp"
+#include "TestDoubleFloat.hpp"
