@@ -1,31 +1,4 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-# Enable C++11 on Apple machines.
-IF( APPLE )
-	 # set mac os default deployment minimum to 10.7
-    IF(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
-        SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.8")
-    ENDIF(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
-    # this code only builds for mac os 64 bit arch
-    SET(CMAKE_OSX_ARCHITECURES "x86_64")
-
-    #determine sdk to build on if not explicitly suplied
-    IF(NOT CMAKE_OSX_SYSROOT)
-	    EXECUTE_PROCESS(COMMAND "xcrun" "--show-sdk-path" OUTPUT_VARIABLE XCRUN_OSX_SYSROOT 
-	    	RESULT_VARIABLE XCRUN_OSX_SYSROOT_STATUS OUTPUT_STRIP_TRAILING_WHITESPACE)
-	    IF(XCRUN_OSX_SYSROOT_STATUS EQUAL 0)
-	    	SET(CMAKE_OSX_SYSROOT ${XCRUN_OSX_SYSROOT})
-	    ENDIF(XCRUN_OSX_SYSROOT_STATUS EQUAL 0)	
-	    UNSET(XCRUN_OSX_SYSROOT)
-	    UNSET(XCRUN_OSX_SYSROOT_STATUS)
-    ENDIF(NOT CMAKE_OSX_SYSROOT)
-
-    # set macOs architecture to x86
-	SET( CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++11" )
-	SET( CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++" )
-	ADD_DEFINITIONS(-DGTEST_USE_OWN_TR1_TUPLE=1)
-	SET(EXTRA_COMPILER_FLAGS "-march=native")
-
-ENDIF( APPLE )
 
 # ###############################################
 # global variables for some messages to be displayed
@@ -36,17 +9,13 @@ SET(MPI_MESSAGE
 	"value to -DMPI_CXX_COMPILER."
 	)
 
-# ###############################################SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++" )
-	# SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++" )
-	# SET( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libc++" )
 # Start the project.
-PROJECT(openfoam-windows C CXX) #project name
+PROJECT(openfoam-windows CXX C) #project name
 
-IF(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-	SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++" )
-	SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -std=c++11 -stdlib=libc++ -lc++ -Wl" )
-	SET( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libc++ -dynamiclib -flat_namespace" )
-ENDIF(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+# ###############################################
+# include cmake config files based on OS and compiler
+INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64.cmake)
+# INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64${CMAKE_CXX_COMPILER_ID}.cmake)
 
 # ###############################################
 # Make VC happy and group all the binary outputs,
@@ -62,7 +31,7 @@ ENDIF( MSVC )
 # ###############################################
 # yes we are building shared libraries
 ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
-
+ADD_DEFINITIONS(-DUSE_STL)
 
 # ###############################################
 # by default unit tests are disabled

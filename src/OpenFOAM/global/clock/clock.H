@@ -34,9 +34,9 @@ SourceFiles
 
 #ifndef clock_H
 #define clock_H
-#include <iostream>
-    #include <string>
-    #include <cstring>
+// #include <iostream>
+#include <string>
+// #include <cstring>
 #include "windowsExport.H"
 #include <ctime>
 using namespace std;
@@ -103,10 +103,10 @@ public:
     static std::string dateTime();
 
     //- Return the current wall-clock date as a string
-    // static _NAMESPACE_::string date();
+    static std::string date();
 
     //- Return the current wall-clock time as a string
-    // static _NAMESPACE_::string clockTime();
+    static std::string clockTime();
 
     //- Returns wall-clock time from clock instantiation
     time_t elapsedClockTime() const;
