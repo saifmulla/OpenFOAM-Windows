@@ -13,9 +13,17 @@ SET(MPI_MESSAGE
 PROJECT(openfoam-windows CXX C) #project name
 
 # ###############################################
+# check if CMAKE_BUILD_TYPE variable is set 
+# if set then configure based on that type 
+# otherwise make it Release
+OPTION(CMAKE_BUILD_TYPE "Release Build." Release )
+# MESSAGE(FATAL_ERROR "CMAKE BUILD TYPE "${CMAKE_BUILD_TYPE})
+
+# ###############################################
 # include cmake config files based on OS and compiler
+MESSAGE(STATUS "Configuring for ${CMAKE_SYSTEM_NAME} and using ${CMAKE_CXX_COMPILER_ID} compiler")
 INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64.cmake)
-# INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64${CMAKE_CXX_COMPILER_ID}.cmake)
+INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64${CMAKE_CXX_COMPILER_ID}.cmake)
 
 # ###############################################
 # Make VC happy and group all the binary outputs,
