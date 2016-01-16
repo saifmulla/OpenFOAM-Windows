@@ -13,6 +13,11 @@ SET(MPI_MESSAGE
 PROJECT(openfoam-windows CXX C) #project name
 
 # ###############################################
+# yes we are building shared libraries
+ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
+ADD_DEFINITIONS(-DUSE_STL)
+
+# ###############################################
 # check if CMAKE_BUILD_TYPE variable is set 
 # if set then configure based on that type 
 # otherwise make it Release
@@ -30,21 +35,6 @@ MESSAGE(STATUS "Configuring for ${CMAKE_SYSTEM_NAME} and using ${CMAKE_CXX_COMPI
 INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64.cmake)
 INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64${CMAKE_CXX_COMPILER_ID}.cmake)
 
-# ###############################################
-# Make VC happy and group all the binary outputs,
-# also make sure GMock headers will compile in
-# all targets.
-IF( MSVC )
-	SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
-	SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/)
-	SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
-	ADD_DEFINITIONS( -D_VARIADIC_MAX=10)
-ENDIF( MSVC )
-
-# ###############################################
-# yes we are building shared libraries
-ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
-ADD_DEFINITIONS(-DUSE_STL)
 
 # ###############################################
 # by default unit tests are disabled

@@ -22,7 +22,8 @@ INCLUDE_DIRECTORIES(BEFORE
     ${CMAKE_CURRENT_SOURCE_DIR}/global/clock
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/pTraits
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/direction
-    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/chars/char    
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/chars/char
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bools/bool
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar
     )
 
@@ -34,7 +35,10 @@ INCLUDE_DIRECTORIES(BEFORE
 # to SOURCE_FILES variable
 SET(SOURCE_FILES 
     ${CMAKE_CURRENT_SOURCE_DIR}/global/clock/clock.C
-    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bool/bool.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bools/bool/bool.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bools/Switch/Switch.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/hashes/Hasher/Hasher.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/hashes/SHA1/SHA1Digest.C
     # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/doubleScalar/doubleScalar.C
     # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/floatScalar/floatScalar.C
     # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/scalar/scalar.C
