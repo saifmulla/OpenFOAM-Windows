@@ -30,5 +30,16 @@ ENDIF(VAR_OUTPUT VERSION_EQUAL 4.6 OR VAR_OUTPUT VERSION_EQUAL 4.7)
 
 ADD_DEFINITIONS(-DGTEST_USE_OWN_TR1_TUPLE=1)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native -Wall -Wextra -Wno-unused-parameter -Wold-style-cast")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frounding-math -fsignaling-nans -ftrapping-math")
 SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -shared -Xlinker --add-needed")
 SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Xlinker --no-as-needed")
+
+# compiler options based on build_type
+IF(CMAKE_BUILD_TYPE MATCHES Debug)
+	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Og")
+ELSEIF(CMAKE_BUILD_TYPE MATCHES Release)
+	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -ftree-slp-vectorize -ftree-vectorize -funroll-loops")
+ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
+
+
+

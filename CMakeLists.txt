@@ -17,13 +17,16 @@ PROJECT(openfoam-windows CXX C) #project name
 # if set then configure based on that type 
 # otherwise make it Release
 OPTION(CMAKE_BUILD_TYPE "Release Build." Release )
-# MESSAGE(FATAL_ERROR "CMAKE BUILD TYPE "${CMAKE_BUILD_TYPE})
+IF(NOT CMAKE_BUILD_TYPE)
+	SET(CMAKE_BUILD_TYPE Release)
+ENDIF(NOT CMAKE_BUILD_TYPE)
 
+IF($ENV{BUILD_ENV} MATCHES "development")
+	SET(CMAKE_BUILD_TYPE Debug)
+ENDIF($ENV{BUILD_ENV} MATCHES "development")
 # ###############################################
 # include cmake config files based on OS and compiler
 MESSAGE(STATUS "Configuring for ${CMAKE_SYSTEM_NAME} and using ${CMAKE_CXX_COMPILER_ID} compiler")
-MESSAGE(STATUS "version ${CMAKE_CXX_COMPILER_VERSION}")
-MESSAGE(STATUS "CONFIG TYPES ${CMAKE_CONFIGURATION_TYPES}")
 INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64.cmake)
 INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64${CMAKE_CXX_COMPILER_ID}.cmake)
 
