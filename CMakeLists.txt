@@ -22,6 +22,8 @@ OPTION(CMAKE_BUILD_TYPE "Release Build." Release )
 # ###############################################
 # include cmake config files based on OS and compiler
 MESSAGE(STATUS "Configuring for ${CMAKE_SYSTEM_NAME} and using ${CMAKE_CXX_COMPILER_ID} compiler")
+MESSAGE(STATUS "version ${CMAKE_CXX_COMPILER_VERSION}")
+MESSAGE(STATUS "CONFIG TYPES ${CMAKE_CONFIGURATION_TYPES}")
 INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64.cmake)
 INCLUDE(cmake/${CMAKE_SYSTEM_NAME}64${CMAKE_CXX_COMPILER_ID}.cmake)
 
