@@ -11,7 +11,8 @@ ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/pTraits
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/chars
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/one
 ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/bools/bool
-${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/Scalar
+# ${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/Scalar
+${PROJECT_SOURCE_DIR}/src/OpenFOAM/primitives/hashes
 )
 
 ADD_EXECUTABLE(All_Tests All_Tests.cpp)

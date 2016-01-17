@@ -15,7 +15,7 @@ PROJECT(openfoam-windows CXX C) #project name
 # ###############################################
 # yes we are building shared libraries
 ADD_DEFINITIONS(-DFOAM_BUILD_SHARED_LIB)
-ADD_DEFINITIONS(-DUSE_STL)
+ADD_DEFINITIONS(-D__USE_STL__)
 
 # ###############################################
 # check if CMAKE_BUILD_TYPE variable is set 
@@ -28,6 +28,7 @@ ENDIF(NOT CMAKE_BUILD_TYPE)
 
 IF($ENV{BUILD_ENV} MATCHES "development")
 	SET(CMAKE_BUILD_TYPE Debug)
+	ADD_DEFINITIONS(-DNDEBUG -D__FULLDEBUG__)
 ENDIF($ENV{BUILD_ENV} MATCHES "development")
 # ###############################################
 # include cmake config files based on OS and compiler

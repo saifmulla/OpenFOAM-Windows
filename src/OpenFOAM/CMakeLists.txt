@@ -24,6 +24,8 @@ INCLUDE_DIRECTORIES(BEFORE
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/direction
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/chars/char
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bools/bool
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/hashes/Hasher
+    # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/strings/string
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar
     )
 
@@ -39,6 +41,9 @@ SET(SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/bools/Switch/Switch.C
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/hashes/Hasher/Hasher.C
     ${CMAKE_CURRENT_SOURCE_DIR}/primitives/hashes/SHA1/SHA1Digest.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/hashes/SHA1/SHA1.C
+    ${CMAKE_CURRENT_SOURCE_DIR}/primitives/strings/string/string.C
+    # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/strings/word/word.C
     # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/doubleScalar/doubleScalar.C
     # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/floatScalar/floatScalar.C
     # ${CMAKE_CURRENT_SOURCE_DIR}/primitives/Scalar/scalar/scalar.C

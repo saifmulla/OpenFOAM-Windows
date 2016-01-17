@@ -11,3 +11,4 @@
 #include "TestScalar.hpp"
 #include "TestZero.hpp"
 #include "TestDoubleFloat.hpp"
+#include "TestHashes.hpp"
