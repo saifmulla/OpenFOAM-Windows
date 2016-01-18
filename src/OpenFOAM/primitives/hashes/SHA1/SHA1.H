@@ -46,7 +46,19 @@ SourceFiles
 #include "SHA1Digest.H"
 #include <string>
 #include <cstddef>
-#if __GNUC_MINOR__ <= 6
+
+/**
+ * this is a temporary fix however for long term usage
+ * store a preprocessor variable with compiler version
+ * number 
+ */
+#define GCC_VERSION (\
+                __GNUC__ * 10000 \
+                + __GNUC_MINOR__ * 100 \
+                + __GNUC_PATCHLEVEL__)
+
+/* test for version less than 4.6.3 */
+#if GCC_VERSION <= 40603
     #include <stdint.h>
 #else
     #include <cstdint>    // C++0x uses <cstdint>

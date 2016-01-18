@@ -22,7 +22,7 @@ ENDIF(VAR_RESULT GREATER 0)
 # c++11 flags tend to break on 4.6 due to lack of support
 # therefore apply this flag only for greater versions
 IF(VAR_OUTPUT VERSION_GREATER 4.7 OR VAR_OUTPUT VERSION_EQUAL 4.7)
-	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 ENDIF(VAR_OUTPUT VERSION_EQUAL 4.7 OR VAR_OUTPUT VERSION_EQUAL 4.7)
 
 # determine the exact major and minor version of compiler 
