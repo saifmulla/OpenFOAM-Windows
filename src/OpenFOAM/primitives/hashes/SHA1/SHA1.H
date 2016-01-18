@@ -46,7 +46,11 @@ SourceFiles
 #include "SHA1Digest.H"
 #include <string>
 #include <cstddef>
-#include <cstdint>    // C++0x uses <cstdint>
+#if __GNUC_MINOR__ <= 6
+    #include <stdint.h>
+#else
+    #include <cstdint>    // C++0x uses <cstdint>
+#endif
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
